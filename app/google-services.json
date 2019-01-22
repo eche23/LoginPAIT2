@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1065671026880",
+    "firebase_url": "https://loginpait-ca171.firebaseio.com",
+    "project_id": "loginpait-ca171",
+    "storage_bucket": "loginpait-ca171.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1065671026880:android:b0ce7497cc91fb6f",
+        "android_client_info": {
+          "package_name": "com.ulpgc.pait.loginpait"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1065671026880-s8v55l8alfbavdnfk3r6kj58229s39o7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkJsS-uiMwdf0JigSrEo9_VjoP06fUjJw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

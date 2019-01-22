@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">Login</string>
+    <string name="hintUsername">Username</string>
+    <string name="hintPassword">Password</string>
+    <string name="hintRepeatPassword">Repeat Password</string>
+    <string name="labelLogin">Login</string>
+    <string name="labelRegister">Register</string>
+    <string name="textRegister">Register</string>
+    <string name="forgotPassword">Forgot Password?</string>
+
+    <string name="update">Actualizar</string>
+    <string name="remove">Borrar</string>
+    <string name="logout">Log out</string>
+    <string name="welcome">Bienvenido</string>
+    <string name="nameInputText">Nombre</string>
+    <string name="idInputText">ID</string>
+
+
+    <string name="correo">Correo</string>
+    <string name="password">Contraseña</string>
+    <string name="login">Log In</string>
+    <string name="user">Username</string>
+    <string name="repetirpassword">Repetir Contraseña</string>
+    <string name="mensaje_error_activity_login">Login error</string>
+    <string name="mensaje_satisfactorio_activity_login">Login satisfactorio</string>
+    <string name="mensaje_satisfactorio_crear_cuenta">Cuenta creada satisfactoriamente</string>
+    <string name="mensaje_error_crear_cuenta">La cuenta no ha podido ser creada</string>
+    <string name="mensaje_error_introduzca_correo">Correo vacío o no válido</string>
+    <string name="mensaje_error_introduzca_password">Password vacía o muy corta</string>
+    <string name="mensaje_error_introduzca_password_diferente">La password es diferente</string>
+    <string name="mensaje_error_eliminar_usuario">Error al eliminar usuario</string>
+    <string name="mensaje_satisfactorio_eliminar_usuario">Usuario eliminado correctamente</string>
+    <string name="botonGuardar">Guardar</string>
+    <string name="botonEliminar">Eliminar</string>
+    <string name="botonLogout">Log Out</string>
+    <string name="botonCrearCuenta">Crear Cuenta</string>
+    <string name="link_para_registrarse">Registrarse</string>
+    <string name="botonAtras">Atrás</string>
+    <string name="mensaje_error_obtener_datos_usuario">Ha habido un error al obtener los datos de usuario</string>
+    <string name="mensaje_actualizar_datos_usuario">Los datos han sido actualizados correctamente</string>
+
+
+
+</resources>

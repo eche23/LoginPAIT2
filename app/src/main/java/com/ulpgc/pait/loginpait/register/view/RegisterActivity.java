@@ -17,7 +17,7 @@ import com.ulpgc.pait.loginpait.register.presenter.PresenterRegister;
 
 public class RegisterActivity extends AppCompatActivity implements IViewRegister{
 
-    private EditText username, password, repeatPassword;
+    private EditText email, name, password, repeatPassword;
     private ProgressBar loading;
     private Button register;
     private IPresenterRegister presenter;
@@ -30,7 +30,8 @@ public class RegisterActivity extends AppCompatActivity implements IViewRegister
         presenter =  new PresenterRegister(this);
         presenter.onCreate();
 
-        username = findViewById(R.id.username);
+        email = findViewById(R.id.username);
+        name = findViewById(R.id.name);
         password = findViewById(R.id.password);
         repeatPassword = findViewById(R.id.repeatPassword);
         loading = findViewById(R.id.loading);
@@ -39,7 +40,7 @@ public class RegisterActivity extends AppCompatActivity implements IViewRegister
             @Override
             public void onClick(View v) {
                 showProgress();
-                presenter.register(username.getText().toString(), password.getText().toString());
+                presenter.register(email.getText().toString(), password.getText().toString(), name.getText().toString());
             }
         });
 
@@ -65,7 +66,7 @@ public class RegisterActivity extends AppCompatActivity implements IViewRegister
     @Override
     public void toMenu() {
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        intent.putExtra("EXTRA_EMAIL", username.getText().toString());
+        intent.putExtra("EXTRA_EMAIL", email.getText().toString());
         startActivity(intent);
         finish();
     }
@@ -75,8 +76,8 @@ public class RegisterActivity extends AppCompatActivity implements IViewRegister
     @Override
     public void showProgress() {
         loading.setVisibility(View.VISIBLE);
-        username.setClickable(false);
-        username.setEnabled(false);
+        email.setClickable(false);
+        email.setEnabled(false);
         password.setClickable(false);
         password.setEnabled(false);
         repeatPassword.setClickable(false);
@@ -88,8 +89,8 @@ public class RegisterActivity extends AppCompatActivity implements IViewRegister
     @Override
     public void hideProgress() {
         loading.setVisibility(View.GONE);
-        username.setClickable(true);
-        username.setEnabled(true);
+        email.setClickable(true);
+        email.setEnabled(true);
         password.setClickable(true);
         password.setEnabled(true);
         repeatPassword.setClickable(true);
@@ -100,7 +101,7 @@ public class RegisterActivity extends AppCompatActivity implements IViewRegister
 
     @Override
     public void clearForm() {
-        username.setText("");
+        email.setText("");
         password.setText("");
         repeatPassword.setText("");
     }

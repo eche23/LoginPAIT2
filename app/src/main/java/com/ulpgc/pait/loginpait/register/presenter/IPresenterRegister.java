@@ -5,7 +5,7 @@ import com.ulpgc.pait.loginpait.register.events.RegisterEvent;
 
 public interface IPresenterRegister {
 
-    void register(String username, String password);
+    void register(String email, String password, String name);
 
     void onCreate();
     void onStop();

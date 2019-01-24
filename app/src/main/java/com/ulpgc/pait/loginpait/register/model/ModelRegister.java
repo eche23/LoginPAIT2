@@ -9,7 +9,7 @@ public class ModelRegister implements IModelRegister{
     }
 
     @Override
-    public void register(String username, String password) {
-        repository.register(username, password);
+    public void register(String email, String password, String name) {
+        repository.register(email, password, name);
     }
 }

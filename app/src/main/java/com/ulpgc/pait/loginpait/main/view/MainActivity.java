@@ -191,7 +191,7 @@ public class MainActivity extends AppCompatActivity implements IViewMain {
 
     @Override
     public void pintarUsuario(User usuario){
-        emailUsuario.setText(usuario.getUsername());
+        emailUsuario.setText(usuario.getEmail());
         IDUsuario.setText(usuario.getId());
         nombreUsuario.setText(usuario.getName());
     }

@@ -33,8 +33,8 @@ public class PresenterRegister implements IPresenterRegister{
     }
 
     @Override
-    public void register(String username, String password) {
-        model.register(username, password);
+    public void register(String email, String password, String name) {
+        model.register(email, password, name);
     }
 
 

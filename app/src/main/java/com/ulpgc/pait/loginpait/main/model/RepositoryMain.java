@@ -37,7 +37,7 @@ public class RepositoryMain implements IRepositoryMain {
                     User usuario = new User();
                     usuario.setName(data.child("name").getValue().toString());
                     usuario.setId(data.child("id").getValue().toString());
-                    usuario.setUsername(data.child("email").getValue().toString());
+                    usuario.setEmail(data.child("email").getValue().toString());
                     postEvents(MainEvent.SUCCESS_DATA_GET_FROM_DB, usuario);
                 }
             }

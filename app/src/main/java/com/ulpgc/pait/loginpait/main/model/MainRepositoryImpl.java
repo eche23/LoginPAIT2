@@ -47,7 +47,7 @@ public class MainRepositoryImpl implements IRepositoryMain {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot datas : dataSnapshot.getChildren()) {
                     User usuario = new User();
-                    usuario.setUsername(datas.child("email").getValue().toString());
+                    usuario.setEmail(datas.child("email").getValue().toString());
                     usuario.setName(datas.child("name").getValue().toString());
                     usuario.setId(datas.child("id").getValue().toString());
                     postEvent(MainEvent.ON_OBTENER_DATOS, usuario);

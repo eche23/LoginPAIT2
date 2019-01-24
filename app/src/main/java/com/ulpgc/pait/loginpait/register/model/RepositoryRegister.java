@@ -1,16 +1,11 @@
 package com.ulpgc.pait.loginpait.register.model;
 
-import android.support.annotation.NonNull;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.ulpgc.pait.loginpait.register.events.RegisterEvent;
 import com.ulpgc.pait.loginpait.user.User;
 
@@ -27,68 +22,46 @@ public class RepositoryRegister implements IRepositoryRegister{
     }
 
     @Override
-    public void register(final String username, final String password) {
+    public void register(final String email, String password, final String name) {
         try {
-            mAuth.createUserWithEmailAndPassword(username, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()){
-                        postEvent(RegisterEvent.ON_REGISTER_SUCESS);
-                        login(username, password);
-                    } else {
-                        postEvent(RegisterEvent.ON_REGISTER_ERROR);
-                    }
-                }
-            });
-        } catch (Exception e){
-            postEvent(RegisterEvent.ON_REGISTER_ERROR);
+            mAuth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+
+                                // Sign in success, update UI with the signed-in user's information
+
+                                FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+                                DatabaseReference ref = database.getReference().child("usuarios");
+                                String key = ref.push().getKey();
+                                User user = new User ();
+                                user.setId(key);
+                                user.setName(name);
+                                user.setEmail(email);
+                                ref.child(key).setValue(user);
+
+
+                                postEvents(RegisterEvent.ON_REGISTER_SUCESS);
+                            } else {
+                                String console = "Error al crear";
+                                // If sign in fails, display a message to the user.
+                                postEvents(RegisterEvent.ON_REGISTER_ERROR);
+                            }
+                        }
+                    });
+        } catch (Exception e) {
+            String console = "Error";
+            postEvents(RegisterEvent.ON_REGISTER_ERROR);
         }
+
     }
 
-
-    private void postEvent(int eventType){
-        RegisterEvent registerEvent = new RegisterEvent();
-        registerEvent.setEventType(eventType);
-        EventBus.getDefault().post(registerEvent);
-    }
-
-    public void login(final String username, String password) {
-        try {
-            mAuth.signInWithEmailAndPassword(username, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()){
-                        postEvent(RegisterEvent.ON_REGISTER_SUCESS);
-                        registerUserDB(username);
-                    } else {
-                        postEvent(RegisterEvent.ON_REGISTER_ERROR);
-                    }
-                }
-            });
-        }catch (Exception e){
-            postEvent(RegisterEvent.ON_REGISTER_ERROR);
-        }
-    }
-
-    private void registerUserDB(String username){
-        final DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("usuarios");
-        String key = userRef.push().getKey();
-        User user = new User();
-        user.setId(key);
-        user.setUsername(username);
-        userRef.child(key).setValue(username);
-        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                postEvent(RegisterEvent.ON_REGISTER_SUCESS);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                postEvent(RegisterEvent.ON_REGISTER_ERROR);
-            }
-        });
-
+    private void postEvents(int type) {
+        RegisterEvent event = new RegisterEvent();
+        event.setEventType(type);
+        EventBus.getDefault().post(event);
 
     }
 }
